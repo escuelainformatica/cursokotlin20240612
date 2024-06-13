@@ -15,6 +15,22 @@ class AutorVistaModelo {
     // para los listados
     val autores = mutableStateListOf<AutorMut>()
 
+    constructor() {
+        var autor1=AutorMut()
+        autor1.nombre="nombre-0"
+        autores.add(autor1)
+        autor1=AutorMut()
+        autor1.nombre="nombre-1"
+        autores.add(autor1)
+        autor1=AutorMut()
+        autor1.nombre="nombre-2"
+        autores.add(autor1)
+        autor1=AutorMut()
+        autor1.nombre="nombre-3"
+        autores.add(autor1)
+    }
+
+
     fun AgregarAutor() {
         var autorNuevo=AutorMut()
         autorNuevo.nombre=autor.nombre

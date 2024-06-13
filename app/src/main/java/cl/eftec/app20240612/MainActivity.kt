@@ -9,19 +9,19 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
-import androidx.compose.material3.Divider
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
-import androidx.compose.material3.NavigationDrawerItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberDrawerState
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
+import cl.eftec.app20240612.composable.ListaDesplegable
 import cl.eftec.app20240612.composable.MenuLateral
 import cl.eftec.app20240612.composable.Navegacion
 import cl.eftec.app20240612.ui.theme.App20240612Theme
@@ -54,6 +54,8 @@ class MainActivity : ComponentActivity() {
                         Column(
                             modifier = Modifier.padding(innerPadding)
                         ) {
+                            var seleccion by remember { mutableStateOf(0) }
+
                             Button(onClick = {
                                 principalVM.scope!!.launch {
                                     drawerState.apply {
@@ -63,6 +65,10 @@ class MainActivity : ComponentActivity() {
                             }) {
                                 Text("Abrir slider")
                             }
+                            ListaDesplegable(principalVM.autorVM.autores,indexActual=2
+                                    ,modificarSeleccion={seleccion=it}
+                            )
+                            Text("el valor seleccionado es ${seleccion}")
                             Navegacion(principalVM = principalVM)
                         }
                     }
